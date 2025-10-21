@@ -1,0 +1,148 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone, Eye } from "lucide-react";
+
+export default function Proximsense() {
+  const [form, setForm] = useState({ nombre: "", correo: "", mensaje: "" });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Gracias por contactar a Proximsense. Te responderemos pronto.");
+    setForm({ nombre: "", correo: "", mensaje: "" });
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0a1f44] text-white font-sans">
+      {/* Encabezado */}
+      <header className="text-center py-10">
+        <motion.img
+          src="/mnt/data/ECEAB52C-B0B2-427B-AD09-9DF57445EF5C.jpeg"
+          alt="Logo Proximsense"
+          className="mx-auto w-40 mb-4"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        />
+        <motion.h1
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl font-bold text-cyan-400"
+        >
+          Proximsense
+        </motion.h1>
+        <p className="mt-2 text-lg text-gray-300">
+          Tecnología que guía, conecta y transforma la vida de las personas ciegas.
+        </p>
+        <p className="mt-2 text-sm text-gray-400 max-w-xl mx-auto">
+          Empresa dedicada a ayudar a los ciegos y personas con dificultad visual. Con Proximsense, el usuario tendrá apoyo para detectar y evitar los obstáculos que lo rodean.
+        </p>
+      </header>
+
+      {/* Sección: Qué es Proximsense */}
+      <section className="max-w-4xl mx-auto p-6 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <h2 className="text-2xl font-semibold text-cyan-400 mb-4">
+            ¿Qué es Proximsense?
+          </h2>
+          <p className="text-gray-200 leading-relaxed">
+            Proximsense es un sensor inteligente diseñado para personas con ceguera o baja visión. 
+            Detecta obstáculos cercanos mediante vibraciones o señales auditivas, ayudando a los usuarios 
+            a desplazarse con mayor seguridad e independencia. Nuestra misión es hacer que la movilidad 
+            cotidiana sea más sencilla, intuitiva y digna, impulsando la inclusión tecnológica.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Sección: Sobre la ceguera */}
+      <section className="bg-[#102b5c] py-10 mt-10">
+        <div className="max-w-5xl mx-auto p-6 grid md:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={{ x: -50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-2xl font-semibold text-cyan-400 mb-4 flex items-center gap-2">
+              <Eye className="text-cyan-300" /> Comprendiendo la ceguera
+            </h2>
+            <p className="text-gray-200 leading-relaxed">
+              La ceguera es una discapacidad visual que puede tener diferentes niveles de pérdida de visión. 
+              La tecnología accesible, como Proximsense, ofrece nuevas oportunidades para mejorar la autonomía, 
+              la orientación espacial y la interacción con el entorno. Promovemos una sociedad más empática, 
+              donde la innovación tecnológica sea una herramienta de igualdad.
+            </p>
+          </motion.div>
+          <motion.img
+            src="https://images.unsplash.com/photo-1581091012184-5c46d0aee6b2?auto=format&fit=crop&w=800&q=80"
+            alt="Persona ciega con bastón usando tecnología"
+            className="rounded-2xl shadow-lg"
+            initial={{ x: 50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          />
+        </div>
+      </section>
+
+      {/* Sección de contacto */}
+      <section className="py-12 max-w-3xl mx-auto p-6 text-center">
+        <h2 className="text-2xl font-semibold text-cyan-400 mb-6">Contáctanos</h2>
+        <Card className="bg-[#0f2655] border-none">
+          <CardContent>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-left">
+              <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre completo"
+                value={form.nombre}
+                onChange={handleChange}
+                required
+                className="p-3 rounded-lg bg-[#1b3a6b] text-white focus:outline-none"
+              />
+              <input
+                type="email"
+                name="correo"
+                placeholder="Correo electrónico"
+                value={form.correo}
+                onChange={handleChange}
+                required
+                className="p-3 rounded-lg bg-[#1b3a6b] text-white focus:outline-none"
+              />
+              <textarea
+                name="mensaje"
+                placeholder="Tu mensaje"
+                rows="4"
+                value={form.mensaje}
+                onChange={handleChange}
+                required
+                className="p-3 rounded-lg bg-[#1b3a6b] text-white focus:outline-none"
+              />
+              <Button type="submit" className="bg-cyan-500 hover:bg-cyan-400 text-[#0a1f44] font-semibold">
+                Enviar mensaje
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+        <div className="mt-6 text-gray-300 flex flex-col md:flex-row justify-center gap-4 items-center">
+          <p className="flex items-center gap-2"><Mail size={18}/> proximsense@gmail.com</p>
+          <p className="flex items-center gap-2"><Phone size={18}/> 5526632965</p>
+          <p className="flex items-center gap-2">Nombre: Proximsense</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-6 text-gray-400 text-sm border-t border-gray-700">
+        © 2025 Proximsense — Innovación con propósito.
+      </footer>
+    </div>
+  );
+}
